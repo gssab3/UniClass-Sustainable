@@ -64,16 +64,27 @@ body#uniClassAdd {
 }
 
 
-.right-block {
+.center-block {
     padding: 30px;
+    padding-top: 10px;
     background-color: #fff;
-    display: flex;
+    display: flow;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 48%;
 }
 
+.right-block {
+    padding: 30px;
+    padding-top: 10px;
+    background-color: #fff;
+    display: flow;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+}
 
 form {
     width: 100%;
@@ -106,7 +117,8 @@ select:focus {
     outline: none;
 }
 
-input[type="submit"] {
+
+.submit-btn {
     background-color: #4CAF50;
     color: white;
     padding: 12px;
@@ -117,10 +129,32 @@ input[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
+.submit-btn:hover {
     background-color: #45a049;
 }
 
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #e53935;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 10px;
+}
 
 @media (max-width: 768px) {
     .container {
@@ -130,6 +164,7 @@ input[type="submit"]:hover {
     }
 
     .left-block,
+    .center-block,
     .right-block {
         padding: 20px;
         width: 100%;

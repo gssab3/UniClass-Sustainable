@@ -30,7 +30,7 @@ public class MessaggioService {
     public MessaggioService() {
         try {
             InitialContext ctx = new InitialContext();
-            messaggioDao = (MessaggioRemote) ctx.lookup("java:global/UniClass/MessaggioDAO");
+            messaggioDao = (MessaggioRemote) ctx.lookup("java:global/UniClass-Sustainable/MessaggioDAO");
         } catch (NamingException e) {
             throw new RuntimeException("Impossibile trovare il messaggioDAO", e);
         }

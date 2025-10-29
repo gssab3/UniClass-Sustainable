@@ -9,6 +9,10 @@
     /* Sessione HTTP */
     HttpSession sessione = request.getSession(true);
     Utente user = (Utente) sessione.getAttribute("currentSessionUser");
+    if(user != null){
+        session.setAttribute("utenteEmail", user.getEmail());
+    }
+
 
     StudenteService studenteService = new StudenteService();
 
@@ -24,11 +28,11 @@
     PersonaleTA personaleTA = null;
 
     /* Controllo tipo utente */
-    Tipo tipoUtente;
+    Tipo tipoUtente = null;
     if (user != null)
         tipoUtente = (Tipo) user.getTipo();
     else
-        tipoUtente = null;
+        response.sendRedirect("Login.jsp");
 
     /* Prendere l'utente */
     if(tipoUtente != null) {
@@ -46,119 +50,84 @@
         }
     }
 
+
+
 %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>JSP - Hello World</title>
+    <title>UniClass Account</title>
     <script src="scripts/sidebar.js" type="text/javascript"></script>
     <link type="text/css" rel="stylesheet" href="styles/headerStyle.css" />
     <link type="text/css" rel="stylesheet" href="styles/barraNavigazioneStyle.css"/>
     <link type="text/css" rel="stylesheet" href="styles/informazioniStyle.css">
+    <link rel="icon" href="images/logois.png" sizes="32x32" type="image/png">
 </head>
 
 <body>
 
-<% if(tipoUtente == null) { %>
+<% if(tipoUtente.equals(Tipo.Studente)) { %>
 
 <div class="barraNavigazione" id="barraNavigazione">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
-		<p>Menu<p>
-		<ul id="menu">
-			<li id="orari"> <a href="servelt">Orari</a>
-			</li>
-			<li id="aule"><a href="servelt">Aule</a>
-			</li>
-			<li id="mappa"><a href="mappa.jsp">Mappa</a>
-			</li>
-			<li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
-            </li>
-			<li id="infoapp"><a href="infoapp.jsp">Info App</a>
-            </li>
-			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
-			</li>
-		</ul>
-	</div>
-
-<% } else if(tipoUtente.equals(Tipo.Studente)) { %>
-
-<div class="barraNavigazione" id="barraNavigazione">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
-		<p>Menu<p>
-		<ul id="menu">
-			<li id="orari"> <a href="servelt">Orari</a>
-			</li>
-			<li id="aule"><a href="servelt">Aule</a>
-			</li>
-			<li id="agenda"><a href="servelt">Agenda</a>
-            </li>
-            <li id="appelli"><a href="servelt">Appelli</a>
-            </li>
-            <li id="conversazioni"><a href="servelt">Conversazioni</a>
-            </li>
-			<li id="mappa"><a href="mappa.jsp">Mappa</a>
-			</li>
-			<li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
-                        </li>
-			<li id="infoapp"><a href="infoapp.jsp">Info App</a>
-            </li>
-			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
-			</li>
-		</ul>
-	</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
+    <p>Menu<p>
+    <ul id="menu">
+        <li id="aule"><a href="aula.jsp">Aule</a>
+        </li>
+        <li id="conversazioni"><a href="Conversazioni">Conversazioni</a>
+        </li>
+        <li id="mappa"><a href="mappa.jsp">Mappa</a>
+        </li>
+        <li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
+        </li>
+        <li id="infoapp"><a href="infoapp.jsp">Info App</a>
+        </li>
+        <li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
+        </li>
+    </ul>
+</div>
 <% } else if(tipoUtente.equals(Tipo.Docente) || tipoUtente.equals(Tipo.Coordinatore)) { %>
 
 <div class="barraNavigazione" id="barraNavigazione">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
-		<p>Menu<p>
-		<ul id="menu">
-			<li id="orari"> <a href="servelt">Orari</a>
-			</li>
-			<li id="aule"><a href="servelt">Aule</a>
-			</li>
-			<li id="agenda"><a href="servelt">Agenda</a>
-            </li>
-            <li id="appelli"><a href="servelt">Appelli</a>
-            </li>
-            <li id="conversazioni"><a href="servelt">Conversazioni</a>
-            </li>
-			<li id="mappa"><a href="mappa.jsp">Mappa</a>
-			</li>
-			<li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
-                        </li>
-			<li id="infoapp"><a href="infoapp.jsp">Info App</a>
-            </li>
-			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
-			</li>
-		</ul>
-	</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
+    <p>Menu<p>
+    <li id="aule"><a href="aula.jsp">Aule</a>
+    </li>
+    <li id="conversazioni"><a href="Conversazioni">Conversazioni</a>
+    </li>
+    <li id="mappa"><a href="mappa.jsp">Mappa</a>
+    </li>
+    <li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
+    </li>
+    <li id="infoapp"><a href="infoapp.jsp">Info App</a>
+    </li>
+    <li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
+    </li>
+    </ul>
+</div>
 
 <% } else if(tipoUtente.equals(Tipo.PersonaleTA)) { %>
 
 <div class="barraNavigazione" id="barraNavigazione">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
-		<p>Menu<p>
-		<ul id="menu">
-			<li id="orari"> <a href="servelt">Orari</a>
-			</li>
-			<li id="aule"><a href="servelt">Aule</a>
-			</li>
-            <li id="appelli"><a href="servelt">Appelli</a>
-            </li>
-            <li id="gutenti"><a href="servlet">Gestione Utenti</a>
-            </li>
-			<li id="mappa"><a href="mappa.jsp">Mappa</a>
-			</li>
-			<li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
-                        </li>
-			<li id="infoapp"><a href="infoapp.jsp">Info App</a>
-            </li>
-			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
-			</li>
-		</ul>
-	</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img src="images/icons/menuOpenIcon.png" alt="closebtn"></a>
+    <p>Menu<p>
+    <ul id="menu">
+        <li id="aule"><a href="aula.jsp">Aule</a>
+        </li>
+        <li id="gutenti"><a href="PersonaleTA/AttivaUtenti.jsp">Gestione Utenti</a>
+        </li>
+        <li id="mappa"><a href="mappa.jsp">Mappa</a>
+        </li>
+        <li id="ChatBot"><a href="ChatBot.jsp">ChatBot</a>
+        </li>
+        <li id="infoapp"><a href="infoapp.jsp">Info App</a>
+        </li>
+        <li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
+        </li>
+    </ul>
+</div>
 <% } %>
 
 <jsp:include page="header.jsp" />
@@ -172,12 +141,15 @@
             <%} %>
             <li id="nome"><%= studente.getNome() %></li>
             <li id="cognome"><%= studente.getCognome() %></li>
-            <li id="dataNascita"><%= studente.getDataNascita() %></li>
+            <li id="dataNascita">Data di nascita: <%= studente.getDataNascita() %></li>
             <li id="matricola"><%= studente.getMatricola() %></li>
             <li id="email"><%= studente.getEmail() %></li>
-            <li id="corsoLaurea"><%= studente.getCorsoLaurea()%></li>
-            <li id="dataIscrizione"><%= studente.getIscrizione() %></li>
+            <li id="corsoLaurea"><%= studente.getCorsoLaurea().getNome()%></li>
+            <li id="dataIscrizione">Data di iscrizione: <%= studente.getIscrizione() %></li>
         </ul>
+        <form action="LogoutServlet" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
 <% } else if (tipoUtente.equals(Tipo.Docente)) { %>
     <div class="listaInfo" id="listaInfo">
@@ -188,13 +160,16 @@
             <%}%>
             <li id="nome"><%= docente.getNome() %></li>
             <li id="cognome"><%= docente.getCognome() %></li>
-            <li id="dataNascita"><%= docente.getDataNascita() %></li>
+            <li id="dataNascita">Data di nascita: <%= docente.getDataNascita() %></li>
             <li id="matricola"><%= docente.getMatricola() %></li>
             <li id="email"><%= docente.getEmail() %></li>
-            <li id="corsoLaurea"><%= docente.getCorsoLaurea() %></li>
-            <li id="dataIscrizione"><%= docente.getIscrizione() %></li>
-            <li id="corsiInsegnati:"><%= "Corsi Insegnati: " + docente.getCorsi() %></li>
+            <li id="corsoLaurea"><%= docente.getCorsoLaurea().getNome() %></li>
+            <li id="dataIscrizione">Data di iscrizione: <%= docente.getIscrizione() %></li>
+            <!-- <li id="corsiInsegnati:"><%= "Corsi Insegnati: " + docente.getCorsi() %></li> -->
         </ul>
+        <form action="LogoutServlet" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
 <% } else if (tipoUtente.equals(Tipo.Coordinatore)) { %>
     <div class="listaInfo" id="listaInfo">
@@ -205,13 +180,16 @@
             <%}%>
             <li id="nome"><%= coordinatore.getNome() %></li>
             <li id="cognome"><%= coordinatore.getCognome() %></li>
-            <li id="dataNascita"><%= coordinatore.getDataNascita() %></li>
+            <li id="dataNascita">Data di nascita: <%= coordinatore.getDataNascita() %></li>
             <li id="matricola"><%= coordinatore.getMatricola() %></li>
             <li id="email"><%= coordinatore.getEmail() %></li>
-            <li id="corsoLaurea"><%= coordinatore.getCorsoLaurea() %></li>
-            <li id="dataIscrizione"><%= coordinatore.getIscrizione() %></li>
-            <li id="corsiInsegnati:"><%= "Corsi Insegnati: " + docente.getCorsi() %></li>
+            <li id="corsoLaurea"><%= coordinatore.getCorsoLaurea().getNome()     %></li>
+            <li id="dataIscrizione">Data di iscrizione alla piattaforma: <%= coordinatore.getIscrizione() %></li>
+            <!-- <li id="corsiInsegnati:"><%= "Corsi Insegnati: " + docente.getCorsi() %></li> -->
         </ul>
+        <form action="LogoutServlet" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
 <% } else if (tipoUtente.equals(Tipo.PersonaleTA)) { %>
     <div class="listaInfo" id="listaInfo">
@@ -227,14 +205,14 @@
             <li id="email"><%= personaleTA.getEmail() %></li>
             <li id="telefono"><%= personaleTA.getTelefono() %></li>
         </ul>
+        <form action="LogoutServlet" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
 <% } %>
 
     <!-- Inserire pulsante Logout -->
 
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+
 </body>
 </html>

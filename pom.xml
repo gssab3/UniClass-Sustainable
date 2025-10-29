@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.unisa.uniclass</groupId>
-    <artifactId>UniClass</artifactId>
+    <artifactId>UniClass-Sustainable</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>UniClass</name>
+    <name>UniClass-Sustainable</name>
     <packaging>war</packaging>
 
     <properties>
