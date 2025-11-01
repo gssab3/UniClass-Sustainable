@@ -14,6 +14,7 @@ import static it.unisa.uniclass.orari.model.Corso.*;
  * Un corso è associato a un corso di laurea, lezioni, docenti e appelli d'esame.
  * */
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "corsi")
 @NamedQueries({
     @NamedQuery(name = TROVA_CORSO, query = "SELECT c FROM Corso c WHERE c.id = :id"),

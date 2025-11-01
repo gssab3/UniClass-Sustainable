@@ -13,6 +13,7 @@ import static it.unisa.uniclass.orari.model.Aula.*;
  * Classe che rappresenta un'Aula universitaria, con informazioni relative a edificio, nome e relazioni con lezioni e appelli.
  * */
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "aule")
 @NamedQueries({
         @NamedQuery(name = TROVA_AULANOME, query = "SELECT a FROM Aula a WHERE a.nome = :nome"),

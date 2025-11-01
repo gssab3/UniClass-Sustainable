@@ -17,6 +17,7 @@ import static it.unisa.uniclass.orari.model.Lezione.*;
  * */
 
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "lezioni")
 @NamedQueries({
         @NamedQuery(name = TROVA_LEZIONE, query = "SELECT l FROM Lezione l WHERE l.id = :id"),

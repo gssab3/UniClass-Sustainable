@@ -13,6 +13,7 @@ import static it.unisa.uniclass.conversazioni.model.Topic.*;
  * Rappresenta un topic di discussione associato a un corso di laurea o a un corso specifico.
  */
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "topics")
 @NamedQueries({
         @NamedQuery(name = TROVA_ID, query = "SELECT t FROM Topic t WHERE t.id = :id"),

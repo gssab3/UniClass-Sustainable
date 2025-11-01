@@ -18,7 +18,16 @@
 <tomee>
   <!-- see https://tomee.apache.org/latest/docs/admin/configuration/containers.html -->
 
-
+    <Resource name="jdbc/DBUniClass"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://postgres:5432/dbuniclass"
+              username="postgres"
+              password="password"
+              maxTotal="20"
+              maxIdle="10"
+              maxWaitMillis="-1"/>
   <!-- activate next line to be able to deploy applications in apps -->
   <!-- <Deployments dir="apps" /> -->
 </tomee>

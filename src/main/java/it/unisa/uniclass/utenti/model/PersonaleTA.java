@@ -13,6 +13,7 @@ import static it.unisa.uniclass.utenti.model.PersonaleTA.*;
  * Implementa l'interfaccia {@link Serializable} per suppportare la serializzazione.
  * */
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "personaleTA")
 @NamedQueries({
         @NamedQuery(name = TROVA_PERSONALE, query = "SELECT p FROM PersonaleTA p WHERE p.id = :id"),
