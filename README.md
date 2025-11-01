@@ -31,18 +31,11 @@ UniClass è costruita con una serie di moduli separati che coprono le diverse fu
     - Un'interfaccia utente accessibile via browser per la visualizzazione delle informazioni e l'interazione con il sistema.
 
 
-## Installazione
+## Avvio
 
-Per iniziare a utilizzare UniClass, segui questi passaggi:
+Per iniziare a utilizzare UniClass, sono consigliati i seguenti passaggi:
 
-### Prerequisiti
-
-- jdk: 21
-- Server database (in questo caso PostgreSQL)
-- TomEE 10 (o Plume)
-- Plugin Smart Tomcat per una gestione intelligente delle configurazioni dinamiche del server
-
-### Setup
-- Per garantire la serializzazione degli oggetti, inserire le seguenti impostazioni in Tomcat->VM OPTIONS:-Dtomee.serialization.class.blacklist=-  -Dtomee.serialization.class.whitelist=*
-- Dopo aver effettuato **Run** su TomEE, indirizzarsi verso http://localhost:8080/UniClass-Dependability/Home  0.0.0)
-- Maven per la gestione delle dipendenze
+- mvn clean package (per la creazione del target)
+- docker compose down --volumes --remove-orphans
+- docker compose build --no-cache 
+- docker compose up
